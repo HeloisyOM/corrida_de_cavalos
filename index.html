@@ -1,135 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="style.css">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+        <title>Corrida de Cavalos</title>
 
-<body>
-    Digite a quantidade de cavalos:
-    <input type="text" id="input_qtd_cavalos"> <br>
-    Digite a quantidade de voltas:
-    <input type="text" id="input_qtd_voltas"> <br>
-    <button onclick="iniciar()">Iniciar turfe</button> <br>
-    <div id="div_msg"></div>
-</body>
+    </head>
+    <body id="body-index">
+        <header>
+            <button id="btn_info" onclick="exibirInfo()">
+                <img src="./assets/icon_info.png" alt="Icon de Informação">
+            </button>
 
-</html>
+        <div id="div_info" style="display: none;">
+                             <button id="btn_Fechar" onclick="fecharInfo()">X</button>
 
-<script>
-    var listaCavalos =  [];   // nome dos cavalos 
-    var tempoTotal   =  [];     // Tempo total dos cavalos
-    var listaVoltas  =  [];   // Tempo dos cavalos em cada volta
-    var listaTempoTresPrimeiros = [];
-    var listaIndiceTresPrimeiros = [];
+                <div id="div_titulo" >
+                 <h3>Bem-Vindo(a)!</h3>
+                  </div>
+                  <div id="div_texto">
 
-    function iniciar() {
-        // limpa os valores já salvos caso exista
-        listaCavalos = [];
-        tempoTotal = [];
-        listaVoltas = [];
-        listaTresPrimeiros = [];
+                 
+                <h4>Esse é um projeto desenvolvido por alunos da SPTech de 1° Semestre.<br>
+                Jogue e tente adivinhar qual dos cavalos vai ser o vencedor!<br><br>
+
+                Feito por:<br>
+                Guilherme Souto<br>
+                Heloisy Mota;<br>
+                Luis ou Luiz;<br>
+                Maria Rosa;<br>
+                Matheus Campos<br>
+                Richard.<br>
+                </h4>
+              
+  </div> </div>
+
+        </header>
+
+        <main>
+            <img src="./assets/placa.png" alt="">
+            <button onclick="redirecionar()">START</button>
+
+           
+        </main>
 
 
-        var qtdCavalos = Number(input_qtd_cavalos.value);
-        var qtdVoltas = Number(input_qtd_voltas.value)
-        var mensagem = '';
+    </body>
+    </html>
 
-        if (qtdCavalos < 2 || qtdCavalos > 6) {
-            alert('A quantidade de cavalos deve estar entre 2 e 6');
-        } else if (qtdVoltas < 2 || qtdVoltas > 10) {
-            alert('A quantidade de voltas deve estar entre 2 e 10');
-        } else {
+    <script>
 
-            // adiciona o nome dos cavalos
-            while (listaCavalos.length < qtdCavalos) {
-                var nomeCavalinho = prompt('Digite o nome do cavalo de numero ${listaCavalos.length + 1}');
-                // valida se o nome do cavalo foi inserido
-                if (nomeCavalinho.trim()) {
-                    listaCavalos.push(nomeCavalinho);
-                }
-            }
-
-            for (var cont = 0; cont < qtdVoltas; cont++) {
-                // Mostra qual volta está na corrida
-                var volta = cont + 1;
-
-                // msg mostrando em qual volta esta
-                mensagem += `<br>Volta:${volta} <br>`;
-
-                // adiciona um vetor para a volta atual
-                listaVoltas[cont] = []
-
-                for (var j = 0; j < listaCavalos.length; j++) {
-                    // gera um numero aleatório
-                    var tempo = Number((Math.random() * 2 + 7).toFixed(1));
-
-                    // coloca o tempo do cavalo em uma lista com todos os tempos
-                    listaVoltas[cont][j] = tempo;
-
-                    // Soma o tempo total do cavalo
-                    // valida se existe já existe o tempo
-                    if (tempoTotal[j]) {
-                        tempoTotal[j] += tempo; // se tiver concatena
-                    } else {
-                        tempoTotal.push(tempo); // senão add o tempo
-                    }
-
-                    // nome do cavalo  - Tempo da volta  - Tempo total do cavalo 
-                    mensagem += `    
-                    ${listaCavalos[j]} - Tempo: ${tempo} - Tempo total: ${tempoTotal[j].toFixed(1)}<br>`;
-                    // aqui que está errado, nome do cavalo
-                }
-
-                
-            }
-            var tempoPrimeiro = 1000;
-            var indicePrimeiro = 0;
-            for (var i = 0; i < tempoTotal.length; i++) {
-                var tempo = tempoTotal[i]
-                if (tempo < tempoPrimeiro) {
-                    tempoPrimeiro = tempo;
-                    indicePrimeiro = i;
-                }
-            }
-            var tempoSegundo = 1000;
-            var indiceSegundo = 0;
-            for (var i = 0; i < tempoTotal.length; i++) {
-                var tempo = tempoTotal[i];
-                if (tempo < tempoSegundo && i != indicePrimeiro) {
-                    tempoSegundo = tempo;
-                    indiceSegundo = i;
-                }
-            }
-            var tempoTerceiro = 1000;
-            var indiceTerceiro = 0;
-            for (var i = 0; i < tempoTotal.length; i++) {
-                var tempo = tempoTotal[i]
-                if (tempo < tempoTerceiro && (i != indicePrimeiro && i != indiceSegundo)) {
-                    tempoTerceiro = tempo;
-                    indiceTerceiro = i;
-                }
-            }
-            listaIndiceTresPrimeiros.push(indicePrimeiro, indiceSegundo, indiceTerceiro);
-            listaTempoTresPrimeiros.push(tempoPrimeiro, tempoSegundo, tempoTerceiro);
-
-            mensagem += ` <br>
-                Pódio: <br>
-            `;
-
-            for (var i = 0; i < listaIndiceTresPrimeiros.length; i++) {
-                var indice = listaIndiceTresPrimeiros[i];
-                var cavalo = listaCavalos[indice];
-                var tempo = listaTempoTresPrimeiros[i];
-                mensagem += `
-                    ${i + 1} - Cavalo: ${cavalo} - Tempo: ${tempo.toFixed(1)} <br>
-                `;
-            }
-            
-            console.log(tempoTotal);
-
-            div_msg.innerHTML = mensagem;
+        function exibirInfo(){
+        div_info.style.display = 'block';
         }
-    }
+        function fecharInfo(){
+                    div_info.style.display = 'none  ';
+
+        }
+        function redirecionar(){
+            window.location='corrida.html'
+        }
+    </script>
