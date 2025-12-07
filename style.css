@@ -22,25 +22,35 @@
 
 header {
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    padding-right: 2%;
-    padding-top: 1%;
-    flex-direction: column;
-    position: relative;
-
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1% 2%; 
+    width: 100%;
+    position: absolute; 
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    z-index: 100; 
 }
 
 header button {
     cursor: pointer;
     background-color: transparent;
     border: 0;
-    height: auto;
     outline: none;
+    padding: 0;
+}
+
+header .btn_header {
+    width: 50px; 
+    height: 50px;
 }
 
 header button img {
     display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 #div_info {
@@ -124,56 +134,70 @@ main button {
     font-size: 70px;
     color: #C9965F;
     cursor: pointer;
-        font-family: "Pixelify Sans", sans-serif;
+    font-family: "Pixelify Sans", sans-serif;
 
 
 }
 
 /* corrida */
+/* corrida */
 #body-corrida {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     overflow-x: hidden;
-    /*Tira a barra lateral de baixo*/
+
+    font-family: "Pixelify Sans", sans-serif;
+}
+
+/* --- ESTÁ AQUI O SEU PROBLEMA --- */
+#img_placaComecar {
+    width: 500px;
+    display: block;
+    margin-top: 10%;
+    margin: 0 auto;
+    z-index: 1;
 }
 
 .container {
     width: 100vw;
-    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('./assets/background_fazenda.png');
+    width: 100%;
+    min-height: 100vh;
+    object-fit: cover;
+    background-repeat: no-repeat;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 2rem;
 }
 
 /* Inicio inputs */
-
-#div_iniciar_corrida h1 {
-    font-family: "Pixelify Sans", sans-serif;
-    font-weight: 600;
-    color: var(--cor-texto);
-    margin-left: 30%;
-    font-size: 70px;
-}
-
 
 .config {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-image: url(./assets/background_info.png);
     background-size: 100%;
     background-repeat: no-repeat;
-    width: 30%;
-    height: 80%;
-    margin-left: 37%;
-    margin-top: 3%;
+    width: 100%;
+    margin-top: 1%;
+    margin-left: 0;
 }
 
 .info {
     display: flex;
+    background-image: url(./assets/placas/background_cad.png);
+
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 90%;
-    height: 90%;
+    width: 600px;
+    height: 600px;
     font-size: 30px;
     font-family: "Pixelify Sans", sans-serif;
     font-weight: 600;
@@ -181,44 +205,50 @@ main button {
 }
 
 .info input {
-    width: 90%;
-    height: 6%;
+    width: 445px;
+    height: 60px;
     border-radius: 10px;
-    border: none;
+    border: 4px solid #331100;
     font-size: 28px;
     outline: none;
     font-family: "Pixelify Sans", sans-serif;
     font-weight: 600;
     color: var(--cor-texto);
-    background-color: #795548;
+    background-color: #C9965F;
     text-align: center;
 }
 
-.info input::placeholder{
+.info input::placeholder {
     color: var(--cor-texto);
 }
 
-.info button {
-    width: 60%;
-    height: 6%;
-    border-radius: 10px;
-    font-family: "Pixelify Sans", sans-serif;
-    font-weight: 600;
-    color: var(--cor-texto);
-    text-align: center;
+.info .btnCad {
+    width: 300px;
+    height: 40px;
+    background-color: var(--cor-texto);
+    border: 0;
+    box-shadow: -9px 7px 0px 2px rgb(17, 6, 0);
+    border-radius: 5px;
     font-size: 30px;
+    color: #C9965F;
+    cursor: pointer;
+    font-family: "Pixelify Sans", sans-serif;
+    margin-top: 2%;
 }
-
-
 
 .escolherSkin {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 2%;
+}
+
+.escolherSkin img {
+    width: 250px;
+    height: auto;
 }
 
 .escolherSkin button {
-    background-color: transparent;
     background-color: transparent;
     border: none;
     font-size: 28px;
@@ -229,29 +259,21 @@ main button {
     text-align: center;
 }
 
-#botaoAvançarGame{
+#botaoAvançarGame {
     display: none;
-    /* background-color: rebeccapurple; */
 }
+
 
 
 /* tela de podio */
 
 .container-podio {
-    background-image: url('./assets/background_corridaCavalos.png');
+    width: 100%;
+    background-image: url('./assets/background_corridaCavalhosEscuro.png');
     object-fit: cover;
     background-repeat: no-repeat;
     font-family: "Pixelify Sans", sans-serif;
-}
-
-.podio-efeito-escuro {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.674);
-    backdrop-filter: blur(5px);
-    ;
+    min-height: 95vh;
 }
 
 .podio-topo {
@@ -425,14 +447,13 @@ main button {
 
 
 /* display */
-#qtdVoltasCorrida{
+#qtdVoltasCorrida {
     display: none;
 }
 
 #div_iniciar_corrida {
     display: block;
     /* display: none; */
-    background-image: url(./assets/background_corridaCavalos.png);
 }
 
 #div_exibir_podio {
@@ -442,4 +463,32 @@ main button {
 
 .podios {
     display: none;
+}
+
+#tempos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+#conteudo_tempos{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5%;
+    height: auto;
+}
+#div_msg {
+    padding: 5%;
+    width: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    background-color: #C9965F;
+    box-shadow: -9px 7px 0px 2px rgb(17, 6, 0);
+    border: 0;
+    border-radius: 10px;
+    font-size: 22px;
 }

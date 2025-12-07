@@ -1,65 +1,77 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" href="style.css">
+<!DOCTYPE html>
+<html lang="en">
 
-        <title>Corrida de Cavalos</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
 
-    </head>
-    <body id="body-index">
-        <header>
-            <button id="btn_info" onclick="exibirInfo()">
-                <img src="./assets/icon_info.png" alt="Icon de Informação">
-            </button>
+    <title>Corrida de Cavalos</title>
+
+</head>
+
+<body id="body-index">
+    <header>
+
+        <button class="btn_header" onclick="irHome()">
+            <img src="./assets/icon_home.png" alt="Icon de Home">
+        </button>
+        <button class="btn_header" onclick="exibirInfo()">
+            <img src="./assets/icon_info.png" alt="Icon de Informação">
+        </button>
+    </header>
 
         <div id="div_info" style="display: none;">
-                             <button id="btn_Fechar" onclick="fecharInfo()">X</button>
+            <button id="btn_Fechar" onclick="fecharInfo()">X</button>
 
-                <div id="div_titulo" >
-                 <h3>Bem-Vindo(a)!</h3>
-                  </div>
-                  <div id="div_texto">
+            <div id="div_titulo">
+                <h3>Bem-Vindo(a)!</h3>
+            </div>
+            <div id="div_texto">
 
-                 
+
                 <h4>Esse é um projeto desenvolvido por alunos da SPTech de 1° Semestre.<br>
-                Jogue e tente adivinhar qual dos cavalos vai ser o vencedor!<br><br>
+                    Jogue e tente adivinhar qual dos cavalos vai ser o vencedor!<br><br>
 
-                Feito por:<br>
-                Guilherme Souto<br>
-                Heloisy Mota;<br>
-                Luis Felipe;<br>
-                Maria Rosa;<br>
-                Matheus Campos;<br>
-                Richard.<br>
+                    Feito por:<br>
+                    Guilherme Souto<br>
+                    Heloisy Mota;<br>
+                    Luis Felipe;<br>
+                    Maria Rosa;<br>
+                    Matheus Campos;<br>
+                    Richard.<br>
                 </h4>
-              
-  </div> </div>
 
-        </header>
-
-        <main>
-            <img src="./assets/placa.png" alt="">
-            <button onclick="redirecionar()">START</button>
-
-           
-        </main>
+            </div>
+        </div>
 
 
-    </body>
-    </html>
+    <main>
+        <img src="./assets/placas/placa_inicio.png" alt="">
+        <button onclick="redirecionar()">START</button>
 
-    <script>
 
-        function exibirInfo(){
+    </main>
+
+
+</body>
+
+</html>
+
+<script>
+
+    function exibirInfo() {
         div_info.style.display = 'block';
-        }
-        function fecharInfo(){
-                    div_info.style.display = 'none  ';
+    }
+    function fecharInfo() {
+        div_info.style.display = 'none  ';
 
-        }
-        function redirecionar(){
-            window.location='corrida.html'
-        }
-    </script>
+    }
+    function redirecionar() {
+        window.location = 'corrida.html'
+    }
+    function irHome(){
+                window.location = 'index.html'
+
+    }
+</script>

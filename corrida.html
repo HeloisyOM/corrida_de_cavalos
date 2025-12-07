@@ -9,8 +9,17 @@
 </head>
 
 <body id="body-corrida">
+    <header>
+
+        <button class="btn_header" onclick="irHome()">
+            <img src="./assets/icon_home.png" alt="Icon de Home">
+        </button>
+    </header>
     <div class="container" id="div_iniciar_corrida">
-        <h1>Escolha seu personagem:</h1>
+
+        <div id="div_imgPlaca">
+            <img id="img_placaComecar" src="assets/placas/placa_comecar.png" alt="">
+        </div>
         <div class="config" id="nomeCavalos">
             <div class="info">
                 <p id="digiteNome">
@@ -27,76 +36,85 @@
                     <button onclick="avançar()">▶</button>
                 </div>
 
-                <button onclick="adicionar()" id="botaoSkin">Adicionar cavalo</button>
-                <button onclick="avançarConfig()" id="botaoAvançarGame">Avançar</button>
+                <button class="btnCad" onclick="adicionar()" id="botaoSkin">Adicionar cavalo</button>
+                <button class="btnCad" onclick="avançarConfig()" id="botaoAvançarGame">Avançar</button>
             </div>
         </div>
         <div class="config" id="qtdVoltasCorrida">
-            <div class="info">
+            <div class="info" id="voltas">
                 <p id="digiteVoltas">
                     Digite a quantidade de voltas:
                 </p>
                 <input type="number" id="input_qtd_voltas" onkeydown="return false" value="0">
                 <br>
-                <button onclick="iniciar()" id="iniciarTurfe">Iniciar turfe</button>
-                <button onclick="voltarConfig()" id="voltarGame">Voltar</button> <br>
-                <div id="div_msg"></div>
+                <button class="btnCad" onclick="iniciar()" id="iniciarTurfe">Iniciar turfe</button>
+                <button class="btnCad" onclick="voltarConfig()" id="voltarGame">Voltar</button> <br>
+
             </div>
+            <div id="tempos">
+                <div id="conteudo_tempos">
+                    <div id="div_msg"></div>
+                    <div class="podio-botoes">
+                        <button onclick="novaCorrida()">
+                            <p>Nova corrida</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
 
     <!-- podio -->
     <div class="container container-podio" id="div_exibir_podio">
-        <div class="podio-efeito-escuro">
-            <div class="podio-topo">
-                <div class="vazio"><span></span></div>
-                <div class="podio-placa">
-                    <div class="placa">
-                        <h2>Vencedor:</h2>
-                        <h3 id="p_nome_vencedor"></h3>
-                    </div>
-                </div>
-                <div class="podio-botoes">
-                    <button onclick="novaCorrida()">
-                        <p>Nova corrida</p>
-                    </button>
-                    <button>
-                        <p>Tempos</p>
-                    </button>
+        <div class="podio-topo">
+            <div class="vazio"><span></span></div>
+            <div class="podio-placa">
+                <div class="placa">
+                    <h2>VENCEDOR:</h2>
+                    <h3 id="p_nome_vencedor"></h3>
                 </div>
             </div>
-            <div class="podio-area">
-                <div class="vazio"></div>
-                <div class="podio-posicoes">
-                    <div class="podios" id="podio-1">
-                        <img id="img_cavalo_1" alt="">
-                        <div class="caixote" id="caixote2">
-                            <p>2</p>
-                        </div>
-                    </div>
-                    <div class="podios" id="podio-0">
-                        <img id="img_cavalo_0" alt="">
-                        <div class="caixote" id="caixote1">
-                            <p>1</p>
-                        </div>
-                    </div>
-                    <div class="podios" id="podio-2">
-                        <img id="img_cavalo_2" alt="">
-                        <div class="caixote" id="caixote3">
-                            <p>3</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="podio-tempo">
-                    <div class="melhorTempo">
-                        <p>Melhor Tempo:</p>
-                        <p id="p_tempo_vencedor">20.30%</p>
-                    </div>
-                </div>
+            <div class="podio-botoes">
+                <button onclick="novaCorrida()">
+                    <p>Nova corrida</p>
+                </button>
+                <button onclick="exibirVoltas()">
+                    <p>Tempos</p>
+                </button>
             </div>
-            <img src="" alt="">
         </div>
+        <div class="podio-area">
+            <div class="vazio"></div>
+            <div class="podio-posicoes">
+                <div class="podios" id="podio-1">
+                    <img id="img_cavalo_1" alt="">
+                    <div class="caixote" id="caixote2">
+                        <p>2</p>
+                    </div>
+                </div>
+                <div class="podios" id="podio-0">
+                    <img id="img_cavalo_0" alt="">
+                    <div class="caixote" id="caixote1">
+                        <p>1</p>
+                    </div>
+                </div>
+                <div class="podios" id="podio-2">
+                    <img id="img_cavalo_2" alt="">
+                    <div class="caixote" id="caixote3">
+                        <p>3</p>
+                    </div>
+                </div>
+            </div>
+            <div class="podio-tempo">
+                <div class="melhorTempo">
+                    <p>Melhor Tempo:</p>
+                    <p id="p_tempo_vencedor">20.30%</p>
+                </div>
+            </div>
+        </div>
+        <img src="" alt="">
     </div>
 </body>
 
@@ -151,7 +169,7 @@
             if (qtdCavalos >= 2) {
                 botaoAvançarGame.style.display = 'block'
             }
-            if(qtdCavalos == 6){
+            if (qtdCavalos == 6) {
                 avançarConfig()
             }
         }
@@ -167,7 +185,8 @@
         qtdVoltasCorrida.style.display = 'none'
     }
     function iniciar() {
-
+        tempos.style.display = 'block';
+        voltas.style.display = 'none';
         var qtdCavalosOficial = qtdCavalos
         var qtdVoltas = Number(input_qtd_voltas.value)
         var mensagem = '';
@@ -178,14 +197,7 @@
             alert('A quantidade de voltas deve estar entre 2 e 10');
         } else {
 
-            // // adiciona o nome dos cavalos
-            // while (listaCavalos.length < qtdCavalosOficial) {
-            //     var nomeCavalinho = prompt(`Digite o nome do cavalo de numero ${listaCavalos.length + 1}`);
-            //     // valida se o nome do cavalo foi inserido
-            //     if (nomeCavalinho.trim()) {
-            //         listaCavalos.push(nomeCavalinho);
-            //     }
-            // }
+
 
             for (var cont = 0; cont < qtdVoltas; cont++) {
                 // Mostra qual volta está na corrida
@@ -264,6 +276,8 @@
 
             setTimeout(() => {
                 div_iniciar_corrida.style.display = 'none'
+                div_imgPlaca.style.display = 'none';
+
                 exibirPodio()
             }, 2000)
 
@@ -315,6 +329,18 @@
         div_exibir_podio.style.display = 'none'
         nomeCavalos.style.display = 'flex'
         qtdVoltasCorrida.style.display = 'none'
+        div_imgPlaca.style.display = 'block';
+
     }
 
+    function exibirVoltas() {
+        div_iniciar_corrida.style.display = 'block'
+        div_exibir_podio.style.display = 'none'
+        div_imgPlaca.style.display = 'none';
+    }
+
+    function irHome() {
+        window.location = 'index.html'
+
+    }
 </script>
