@@ -336,8 +336,86 @@ main button {
 #div_iniciar_corrida {
     display: block;
     /* display: none; */
+     background-image: url(./assets/background_corridaCavalos.png);
 }
 
+#div_iniciar_corrida h1{
+    font-family: "Pixelify Sans", sans-serif;
+    font-weight: 600;
+    color: var(--cor-texto);
+    margin-left: 30%;
+    font-size: 70px;
+}
+.config{
+    display: flex;
+    justify-content: center;
+    align-items:center ;
+    flex-direction: column;
+    background-image: url(./assets/background_info.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 30%;
+    height: 80%;
+   margin-left: 37%;
+   margin-top: 3%;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 90%;
+    font-size: 30px;
+    font-family: "Pixelify Sans", sans-serif;
+    font-weight: 600;
+    color: var(--cor-texto);
+}
+
+.info input{
+    width: 30%;
+    height: 6%;
+    border-radius: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 28px;
+    outline: none;
+    font-family: "Pixelify Sans", sans-serif;
+    font-weight: 600;
+    color: var(--cor-texto);
+    text-align: center;
+}
+
+.info button{
+    width: 60%;
+    height: 6%;
+    border-radius: 10px;
+    font-family: "Pixelify Sans", sans-serif;
+    font-weight: 600;
+    color: var(--cor-texto);
+    text-align: center;
+    font-size: 30px;
+}
+
+
+.escolherSkin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.escolherSkin button{
+    background-color: transparent;
+     background-color: transparent;
+    border: none;
+    font-size: 28px;
+    outline: none;
+    font-family: "Pixelify Sans", sans-serif;
+    font-weight: 600;
+    color: var(--cor-texto);
+    text-align: center;
+}
 #div_exibir_podio {
     display: none;
     /* display: flex; */
