@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -6,12 +7,16 @@
 
 }
 
+:root {
+    --cor-texto: #331100;
+}
+
 #body-index {
     background-image: url('./assets/background_corridaCavalos.png');
     width: 100%;
     object-fit: cover;
-     background-repeat: no-repeat; 
-             font-family: "Pixelify Sans", sans-serif;
+    background-repeat: no-repeat;
+    font-family: "Pixelify Sans", sans-serif;
 
 }
 
@@ -47,7 +52,7 @@ header button img {
     top: 75px;
     right: 4%;
     display: flex;
-
+    padding: 0% 0% 5% 0%;
 }
 
 #div_titulo {
@@ -60,15 +65,15 @@ header button img {
 
 }
 
-#div_titulo h3{
-    color: #331100;
+#div_titulo h3 {
+    color: var(--cor-texto);
     font-size: 30px;
     margin-bottom: 5px;
 }
 
-#div_info button{
+#div_info button {
     position: absolute;
-    background-color: #331100;
+    background-color: var(--cor-texto);
     border: 0;
     border-radius: 5px;
     height: 35px;
@@ -80,21 +85,22 @@ header button img {
     z-index: 1;
 }
 
-#div_texto{
+#div_texto {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: #331100;
+    color: var(--cor-texto);
     font-style: italic;
-  font-family: "Poppins", sans-serif;
-font-size: 20px;
-    }
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+}
 
 
-#div_texto h4{
+#div_texto h4 {
     margin-top: 0;
 }
+
 main {
     display: flex;
     justify-content: center;
@@ -111,7 +117,7 @@ main img {
 main button {
     width: 447px;
     height: 98px;
-    background-color: #331100;
+    background-color: var(--cor-texto);
     border: 0;
     box-shadow: -9px 7px 0px 2px rgb(17, 6, 0);
     border-radius: 5px;
@@ -120,3 +126,223 @@ main button {
     cursor: pointer;
 
 }
+
+/* corrida */
+#body-corrida {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    /*Tira a barra lateral de baixo*/
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+}
+
+/* tela de podio */
+
+.container-podio {
+    background-image: url('./assets/background_corridaCavalos.png');
+    object-fit: cover;
+    background-repeat: no-repeat;
+    font-family: "Pixelify Sans", sans-serif;
+}
+
+.podio-efeito-escuro {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.674);
+    backdrop-filter: blur(5px);
+    ;
+}
+
+.podio-topo {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.placa {
+    width: 650px;
+    height: 100%;
+    background-image: url(assets/placas/placaVazia.png);
+    object-fit: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: -125px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #331100;
+}
+
+.placa h2 {
+    font-size: 70px;
+}
+
+.placa h3 {
+    font-size: 60px;
+}
+
+.podio-botoes,
+.vazio {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.podio-botoes button {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url(assets/placas/caixote.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 275px;
+    height: 200px;
+    cursor: pointer;
+    font-size: 40px;
+    padding: 2%;
+    font-family: "Pixelify Sans", sans-serif;
+    font-weight: 600;
+    color: var(--cor-texto);
+}
+
+.podio-area {
+    width: 100%;
+    height: 60%;
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+}
+
+.podio-area .vazio,
+.podio-tempo {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    padding-bottom: 2vh;
+}
+
+.melhorTempo {
+    width: 350px;
+    height: 250px;
+    background-image: url(assets/placas/caixote.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-weight: 500;
+    color: var(--cor-texto);
+}
+
+.podio-posicoes {
+    height: 100%;
+    width: 40%;
+    display: flex;
+    align-items: end;
+    padding-bottom: 2%;
+    justify-content: center;
+}
+.podios{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.podios img{
+    margin-bottom: -20px;
+}
+
+.caixote p{
+    /* borda  */
+    -webkit-text-stroke: 2px black; 
+}
+
+#caixote1 {
+    width: 250px;
+    height: 250px;
+    background-image: url(assets/placas/podio.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 120px;
+    font-weight: 600;
+    color: goldenrod;
+}
+
+#caixote2 {
+    width: 200px;
+    height: 200px;
+    background-image: url(assets/placas/podio.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 120px;
+    font-weight: 600;
+    color: silver;
+}
+
+#caixote3 {
+    width: 200px;
+    height: 200px;
+    background-image: url(assets/placas/podio.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 120px;
+    font-weight: 600;
+    color: #cd7f32;
+}
+
+
+
+
+
+
+
+
+/* display */
+#div_iniciar_corrida {
+    display: block;
+    /* display: none; */
+}
+
+#div_exibir_podio {
+    display: none;
+    /* display: flex; */
+}
+
+.podios{
+    display: none;
+}   

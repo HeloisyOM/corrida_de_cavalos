@@ -8,21 +8,77 @@
     <title>Corrida de Cavalos</title>
 </head>
 
-<body>
-    Digite a quantidade de cavalos:
-    <input type="text" id="input_qtd_cavalos"> <br>
-    Digite a quantidade de voltas:
-    <input type="text" id="input_qtd_voltas"> <br>
-    <button onclick="iniciar()">Iniciar turfe</button> <br>
-    <div id="div_msg"></div>
+<body id="body-corrida">
+    <div class="container" id="div_iniciar_corrida">
+        Digite a quantidade de cavalos:
+        <input type="text" id="input_qtd_cavalos" value="3"> <br>
+        Digite a quantidade de voltas:
+        <input type="text" id="input_qtd_voltas"> <br>
+        <!-- <button onclick="iniciar()">Iniciar turfe</button> <br>  --> <!--Tem que tiraresse comentario depois-->
+        <button onclick="iniciar()">Iniciar turfe</button> <br>
+        <div id="div_msg"></div>
+    </div>
+
+
+    <!-- podio -->
+    <div class="container container-podio" id="div_exibir_podio">
+        <div class="podio-efeito-escuro">
+            <div class="podio-topo">
+                <div class="vazio"><span></span></div>
+                <div class="podio-placa">
+                    <div class="placa">
+                        <h2>Vencedor:</h2>
+                        <h3 id="p_nome_vencedor">Pé de pano</h3>
+                    </div>
+                </div>
+                <div class="podio-botoes">
+                    <button onclick="novaCorrida()">
+                        <p>Nova corrida</p>
+                    </button>
+                    <button>
+                        <p>Tempos</p>
+                    </button>
+                </div>
+            </div>
+            <div class="podio-area">
+                <div class="vazio"></div>
+                <div class="podio-posicoes">
+                    <div class="podios" id="podio-1">
+                        <img src="./assets/cavalos/cavalo1.png" alt="">
+                        <div class="caixote" id="caixote2">
+                            <p>2</p>
+                        </div>
+                    </div>
+                    <div class="podios" id="podio-0">
+                        <img src="./assets/cavalos/cavalo1.png" alt="">
+                        <div class="caixote" id="caixote1">
+                            <p>1</p>
+                        </div>
+                    </div>
+                    <div class="podios" id="podio-2">
+                        <img src="./assets/cavalos/cavalo1.png" alt="">
+                        <div class="caixote" id="caixote3">
+                            <p>3</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="podio-tempo">
+                    <div class="melhorTempo">
+                        <p>Melhor Tempo:</p>
+                        <p id="p_tempo_vencedor">20.30%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
 
 <script>
-    var listaCavalos =  [];   // nome dos cavalos 
-    var tempoTotal   =  [];     // Tempo total dos cavalos
-    var listaVoltas  =  [];   // Tempo dos cavalos em cada volta
+    var listaCavalos = [];   // nome dos cavalos 
+    var tempoTotal = [];     // Tempo total dos cavalos
+    var listaVoltas = [];   // Tempo dos cavalos em cada volta
     var listaTempoTresPrimeiros = [];
     var listaIndiceTresPrimeiros = [];
 
@@ -32,7 +88,8 @@
         tempoTotal = [];
         listaVoltas = [];
         listaTresPrimeiros = [];
-
+        listaTempoTresPrimeiros = [];
+        listaIndiceTresPrimeiros = [];
 
         var qtdCavalos = Number(input_qtd_cavalos.value);
         var qtdVoltas = Number(input_qtd_voltas.value)
@@ -84,8 +141,11 @@
                     // aqui que está errado, nome do cavalo
                 }
 
-                
+
             }
+
+
+            // função Podio
             var tempoPrimeiro = 1000;
             var indicePrimeiro = 0;
             for (var i = 0; i < tempoTotal.length; i++) {
@@ -104,6 +164,9 @@
                     indiceSegundo = i;
                 }
             }
+            if (qtdCavalos > 2) {
+
+            }
             var tempoTerceiro = 1000;
             var indiceTerceiro = 0;
             for (var i = 0; i < tempoTotal.length; i++) {
@@ -113,25 +176,67 @@
                     indiceTerceiro = i;
                 }
             }
-            listaIndiceTresPrimeiros.push(indicePrimeiro, indiceSegundo, indiceTerceiro);
-            listaTempoTresPrimeiros.push(tempoPrimeiro, tempoSegundo, tempoTerceiro);
-
-            mensagem += ` <br>
-                Pódio: <br>
-            `;
-
-            for (var i = 0; i < listaIndiceTresPrimeiros.length; i++) {
-                var indice = listaIndiceTresPrimeiros[i];
-                var cavalo = listaCavalos[indice];
-                var tempo = listaTempoTresPrimeiros[i];
-                mensagem += `
-                    ${i + 1} - Cavalo: ${cavalo} - Tempo: ${tempo.toFixed(1)} <br>
-                `;
+            if (qtdCavalos > 2) {
+                listaIndiceTresPrimeiros.push(indicePrimeiro, indiceSegundo, indiceTerceiro);
+                listaTempoTresPrimeiros.push(tempoPrimeiro, tempoSegundo, tempoTerceiro);
+            } else {
+                listaIndiceTresPrimeiros.push(indicePrimeiro, indiceSegundo);
+                listaTempoTresPrimeiros.push(tempoPrimeiro, tempoSegundo);
             }
-            
-            console.log(tempoTotal);
-
             div_msg.innerHTML = mensagem;
+
+
+            // mensagem += ` <br>
+            //     Pódio: <br>
+            // `;
+
+            // for (var i = 0; i < listaIndiceTresPrimeiros.length; i++) {
+            //     var indice = listaIndiceTresPrimeiros[i];
+            //     var cavalo = listaCavalos[indice];
+            //     var tempo = listaTempoTresPrimeiros[i];
+            //     mensagem += `
+            //         ${i + 1} - Cavalo: ${cavalo} - Tempo: ${tempo.toFixed(1)} <br>
+            //     `;
+            // }
+            
+            // console.log(tempoTotal);
+
+            // div_msg.innerHTML += mensagem;
+
+
+
+            setTimeout(() => {
+                div_iniciar_corrida.style.display = 'none'
+                exibirPodio()
+            }, 2000)
+
         }
-}
+    }
+    function exibirPodio() {
+        div_iniciar_corrida.style.display = 'none'
+        div_exibir_podio.style.display = 'block'
+        
+        for (var i = 0; i < listaIndiceTresPrimeiros.length; i++) {
+            var lugarPodio = document.getElementById(`podio-${i}`)
+            var indice = listaIndiceTresPrimeiros[i];
+            var cavalo = listaCavalos[indice];
+            var tempo = listaTempoTresPrimeiros[i];
+            lugarPodio.style.display = 'flex'
+        }
+        var melhorTempo = document.getElementById('p_tempo_vencedor')
+        var cavaloVencedor = document.getElementById(`p_nome_vencedor`)
+        cavaloVencedor.innerHTML = listaCavalos[listaIndiceTresPrimeiros[0]]
+        melhorTempo.innerHTML =  listaTempoTresPrimeiros[0].toFixed(2)
+        console.log(tempoTotal);
+    }
+
+
+    function novaCorrida() {
+        // garantindo que a tela exista
+        div_iniciar_corrida.style.display = 'block'
+        div_msg.innerHTML = ''
+        iniciar()
+
+    }
+
 </script>
