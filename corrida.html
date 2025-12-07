@@ -11,18 +11,13 @@
 <body id="body-corrida">
     <div class="container" id="div_iniciar_corrida">
         <h1>Escolha seu personagem:</h1>
-        <div class="config">
+        <div class="config" id="nomeCavalos">
             <div class="info">
-
                 <p id="digiteNome">
-                    Digite o nome de cavalo:
+                    Digite o nome do 1° cavalo:
                 </p>
-                <input type="text" id="input_nomeCavalo" value="Nome">
-                <p style="display: none;" id="digiteVoltas">
-
-                    Digite a quantidade de voltas:
-                </p>
-                <input type="number" id="input_qtd_voltas" onkeydown="return false" value="0" style="display: none;"> <br>
+                <input type="text" id="input_nomeCavalo" placeholder="Nome">
+                <br>
                 <p id="escolherSkinFrase">
                     Escolha a skin do seu cavalo:
                 </p>
@@ -31,12 +26,20 @@
                     <img id="skin" src="./assets/cavalos/cavalo1.png" alt="">
                     <button onclick="avançar()">▶</button>
                 </div>
-                <!-- <button onclick="iniciar()">Iniciar turfe</button> <br>  -->
-                <!--Tem que tirar esse comentario depois-->
+
                 <button onclick="adicionar()" id="botaoSkin">Adicionar cavalo</button>
                 <button onclick="avançarConfig()" id="botaoAvançarGame">Avançar</button>
-                <button onclick="iniciar()" id="iniciarTurfe" style="display: none;">Iniciar turfe</button>
-                <button onclick="voltarConfig()" id="voltarGame" style="display: none;">Voltar</button> <br>
+            </div>
+        </div>
+        <div class="config" id="qtdVoltasCorrida">
+            <div class="info">
+                <p id="digiteVoltas">
+                    Digite a quantidade de voltas:
+                </p>
+                <input type="number" id="input_qtd_voltas" onkeydown="return false" value="0">
+                <br>
+                <button onclick="iniciar()" id="iniciarTurfe">Iniciar turfe</button>
+                <button onclick="voltarConfig()" id="voltarGame">Voltar</button> <br>
                 <div id="div_msg"></div>
             </div>
         </div>
@@ -51,7 +54,7 @@
                 <div class="podio-placa">
                     <div class="placa">
                         <h2>Vencedor:</h2>
-                        <h3 id="p_nome_vencedor">Pé de pano</h3>
+                        <h3 id="p_nome_vencedor"></h3>
                     </div>
                 </div>
                 <div class="podio-botoes">
@@ -67,19 +70,19 @@
                 <div class="vazio"></div>
                 <div class="podio-posicoes">
                     <div class="podios" id="podio-1">
-                        <img src="./assets/cavalos/cavalo1.png" alt="">
+                        <img id="img_cavalo_1" alt="">
                         <div class="caixote" id="caixote2">
                             <p>2</p>
                         </div>
                     </div>
                     <div class="podios" id="podio-0">
-                        <img src="./assets/cavalos/cavalo1.png" alt="">
+                        <img id="img_cavalo_0" alt="">
                         <div class="caixote" id="caixote1">
                             <p>1</p>
                         </div>
                     </div>
                     <div class="podios" id="podio-2">
-                        <img src="./assets/cavalos/cavalo1.png" alt="">
+                        <img id="img_cavalo_2" alt="">
                         <div class="caixote" id="caixote3">
                             <p>3</p>
                         </div>
@@ -106,6 +109,8 @@
     var listaVoltas = [];   // Tempo dos cavalos em cada volta
     var listaTempoTresPrimeiros = [];
     var listaIndiceTresPrimeiros = [];
+    var skinEscolhida = []
+    var cont = 0
     var qtdCavalos = 0
     var skins = ['./assets/cavalos/cavalo1.png',
         './assets/cavalos/cavalo2.png',
@@ -119,8 +124,6 @@
         './assets/cavalos/cavalo10.png'
     ]
 
-    var skinEscolhida = []
-    var cont = 0
     function avançar() {
         cont++;
         if (cont >= skins.length) {
@@ -134,51 +137,36 @@
             cont = skins.length - 1;
         }
         document.getElementById("skin").src = skins[cont];
-
     }
 
     function adicionar() {
+        var textoTela = document.getElementById(`digiteNome`)
         var nomeCavalo = input_nomeCavalo.value
-        listaCavalos.push(nomeCavalo)
-        document.getElementById("input_nomeCavalo").value = "";
-        qtdCavalos++
-        skinEscolhida.push(skins[cont])
-
+        if (nomeCavalo.trim()) {
+            listaCavalos.push(nomeCavalo)
+            document.getElementById("input_nomeCavalo").value = "";
+            qtdCavalos++
+            textoTela.innerHTML = `Digite o nome do ${qtdCavalos + 1}° cavalo`
+            skinEscolhida.push(skins[cont])
+            if (qtdCavalos >= 2) {
+                botaoAvançarGame.style.display = 'block'
+            }
+            if(qtdCavalos == 6){
+                avançarConfig()
+            }
+        }
     }
 
     function avançarConfig() {
-        input_nomeCavalo.style.display = 'none'
-        digiteNome.style.display = 'none'
-        digiteVoltas.style.display = 'flex'
-        input_qtd_voltas.style.display = 'flex'
-        escolherSkinFrase.style.display = 'none'
-        escolherSkin.style.display = 'none'
-        botaoSkin.style.display = 'none'
-        iniciarTurfe.style.display = 'block'
-        botaoAvançarGame.style.display = 'none'
-        voltarGame.style.display = 'block'
+        nomeCavalos.style.display = 'none'
+        qtdVoltasCorrida.style.display = 'flex'
     }
 
     function voltarConfig() {
-        input_nomeCavalo.style.display = 'flex'
-        digiteNome.style.display = 'flex'
-        digiteVoltas.style.display = 'None'
-        input_qtd_voltas.style.display = 'None'
-        escolherSkinFrase.style.display = 'flex'
-        escolherSkin.style.display = 'flex'
-        botaoSkin.style.display = 'block'
-        iniciarTurfe.style.display = 'None'
-        botaoAvançarGame.style.display = 'block'
-        voltarGame.style.display = 'None'
+        nomeCavalos.style.display = 'flex'
+        qtdVoltasCorrida.style.display = 'none'
     }
     function iniciar() {
-        // limpa os valores já salvos caso exista
-        listaCavalos = [];
-        tempoTotal = [];
-        listaVoltas = [];
-        listaTresPrimeiros = [];
-        listaTempoTresPrimeiros = [];
-        listaIndiceTresPrimeiros = [];
 
         var qtdCavalosOficial = qtdCavalos
         var qtdVoltas = Number(input_qtd_voltas.value)
@@ -190,14 +178,14 @@
             alert('A quantidade de voltas deve estar entre 2 e 10');
         } else {
 
-            // adiciona o nome dos cavalos
-            while (listaCavalos.length < qtdCavalosOficial) {
-                var nomeCavalinho = prompt(`Digite o nome do cavalo de numero ${listaCavalos.length + 1}`);
-                // valida se o nome do cavalo foi inserido
-                if (nomeCavalinho.trim()) {
-                    listaCavalos.push(nomeCavalinho);
-                }
-            }
+            // // adiciona o nome dos cavalos
+            // while (listaCavalos.length < qtdCavalosOficial) {
+            //     var nomeCavalinho = prompt(`Digite o nome do cavalo de numero ${listaCavalos.length + 1}`);
+            //     // valida se o nome do cavalo foi inserido
+            //     if (nomeCavalinho.trim()) {
+            //         listaCavalos.push(nomeCavalinho);
+            //     }
+            // }
 
             for (var cont = 0; cont < qtdVoltas; cont++) {
                 // Mostra qual volta está na corrida
@@ -274,26 +262,6 @@
             }
             div_msg.innerHTML = mensagem;
 
-
-            // mensagem += ` <br>
-            //     Pódio: <br>
-            // `;
-
-            // for (var i = 0; i < listaIndiceTresPrimeiros.length; i++) {
-            //     var indice = listaIndiceTresPrimeiros[i];
-            //     var cavalo = listaCavalos[indice];
-            //     var tempo = listaTempoTresPrimeiros[i];
-            //     mensagem += `
-            //         ${i + 1} - Cavalo: ${cavalo} - Tempo: ${tempo.toFixed(1)} <br>
-            //     `;
-            // }
-
-            // console.log(tempoTotal);
-
-            // div_msg.innerHTML += mensagem;
-
-
-
             setTimeout(() => {
                 div_iniciar_corrida.style.display = 'none'
                 exibirPodio()
@@ -305,27 +273,48 @@
         div_iniciar_corrida.style.display = 'none'
         div_exibir_podio.style.display = 'block'
 
+
         for (var i = 0; i < listaIndiceTresPrimeiros.length; i++) {
             var lugarPodio = document.getElementById(`podio-${i}`)
+            var cavaloPodio = document.getElementById(`img_cavalo_${i}`)
             var indice = listaIndiceTresPrimeiros[i];
             var cavalo = listaCavalos[indice];
             var tempo = listaTempoTresPrimeiros[i];
             lugarPodio.style.display = 'flex'
+            cavaloPodio.src = `${skinEscolhida[indice]}`
         }
-        var melhorTempo = document.getElementById('p_tempo_vencedor')
         var cavaloVencedor = document.getElementById(`p_nome_vencedor`)
         cavaloVencedor.innerHTML = listaCavalos[listaIndiceTresPrimeiros[0]]
+        var melhorTempo = document.getElementById('p_tempo_vencedor')
         melhorTempo.innerHTML = listaTempoTresPrimeiros[0].toFixed(2)
         console.log(tempoTotal);
     }
 
 
     function novaCorrida() {
+        // limpa os valores já salvos caso exista
+        listaCavalos = [];   // nome dos cavalos 
+        tempoTotal = [];     // Tempo total dos cavalos
+        listaVoltas = [];   // Tempo dos cavalos em cada volta
+        listaTempoTresPrimeiros = [];
+        listaIndiceTresPrimeiros = [];
+        skinEscolhida = []
+        cont = 0
+        qtdCavalos = 0
+
+        // limpado os input
+        input_nomeCavalo.value = ''
+        input_qtd_voltas.value = ''
+        div_msg.innerHTML = ''
+
+        digiteNome.innerHTML = `Digite o nome do ${qtdCavalos + 1}° cavalo`
+
+
         // garantindo que a tela exista
         div_iniciar_corrida.style.display = 'block'
-        div_msg.innerHTML = ''
-        iniciar()
-
+        div_exibir_podio.style.display = 'none'
+        nomeCavalos.style.display = 'flex'
+        qtdVoltasCorrida.style.display = 'none'
     }
 
 </script>
